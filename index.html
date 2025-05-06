@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <aside class="sidebar">
-        <h1><span class="highlight">Yenny123</span><br><span class="sub">PHOTOGRAPHY</span></h1>
+        <h1><span class="highlight">Yenny</span><br><span class="sub">PHOTOGRAPHY</span></h1>
         <p class="portfolio-title">Portfolio</p>
         <p class="desc">
             High quality architectural and interior photography<br>
@@ -18,14 +18,55 @@
         <p class="copyright">Copyright © Yenny 2020</p>
     </aside>
 
+    <header class="mobile-header">
+        <h1><span class="highlight">Yenny</span><br><span class="sub">PHOTOGRAPHY</span></h1>
+    </header>
+
     <main class="gallery">
-        <img src="images/img1.jpg" alt="Interior 1" />
-        <img src="images/img2.jpg" alt="Interior 2" />
-        <img src="images/img3.jpg" alt="Interior 3" />
-        <img src="images/img4.jpg" alt="Interior 4" />
-        <img src="images/img5.jpg" alt="Interior 5" />
-        <img src="images/img6.jpg" alt="Interior 6" />
+        <img src="images/img1.jpg" alt="Interior 1" class="modal-trigger" data-src="images/img1.jpg" />
+        <img src="images/img2.jpg" alt="Interior 2" class="modal-trigger" data-src="images/img2.jpg" />
+        <img src="images/img3.jpg" alt="Interior 3" class="modal-trigger" data-src="images/img3.jpg" />
+        <img src="images/img4.jpg" alt="Interior 4" class="modal-trigger" data-src="images/img4.jpg" />
     </main>
+
+    <aside class="mobile-info">
+        <p class="portfolio-title">Portfolio</p>
+        <p class="desc">
+            High quality architectural and interior photography<br>
+            for architects, designers and real estate agents.
+        </p>
+    </aside>
+
+    <footer class="mobile-footer">
+        <p class="copyright">Copyright © Yenny 2020</p>
+    </footer>
+    <div id="imageModal" class="modal">
+        <span class="close-button">&times;</span>
+        <img class="modal-content" id="fullScreenImage" />
+    </div>
 </div>
+
+<script>
+    let modal = document.getElementById("imageModal");
+    let modalTriggers = document.querySelectorAll(".modal-trigger");
+    let modalImage = document.getElementById("fullScreenImage");
+    let closeButton = document.querySelector(".close-button");
+    modalTriggers.forEach(function(img) {
+        img.addEventListener("click", function() {
+            modal.style.display = "block";
+            modalImage.src = this.getAttribute("data-src");
+        });
+    });
+
+    closeButton.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+</script>
 </body>
 </html>
